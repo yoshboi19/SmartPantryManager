@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnSettings.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SuggestedRecipesActivity.class);
             Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
             startActivity(settingsIntent);
         });
