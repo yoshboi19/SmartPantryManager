@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Pantry Settings"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp" />
+
+    <CheckBox
+        android:id="@+id/cbExpiryAlerts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enable Expiring-Soon Alerts"
+        android:textSize="16sp"
+        android:layout_marginBottom="12dp" />
+
+    <CheckBox
+        android:id="@+id/cbMetricUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Prefer Metric Units (g / ml)"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp" />
+
+    <Button
+        android:id="@+id/btnSaveSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Preferences" />
+</LinearLayout>
