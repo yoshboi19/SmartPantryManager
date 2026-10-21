@@ -3,9 +3,9 @@ package com.example.smartpantry;
 public class Recipe {
     private int id;
     private String name;
-    private String ingredientsRaw; // Format: "egg:2:pcs,milk:100:ml"
+    private String ingredientsRaw;
     private String steps;
-    private int missingCount; // 0 = Strict Match, 1 = Almost There
+    private int missingCount;
 
     public Recipe(int id, String name, String ingredientsRaw, String steps) {
         this.id = id;
