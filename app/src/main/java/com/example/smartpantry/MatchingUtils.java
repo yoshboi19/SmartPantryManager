@@ -4,23 +4,21 @@ import java.util.List;
 
 public class MatchingUtils {
 
-    // Normalizes ingredient names (lowercase, trims, handles common plurals)
     public static String normalizeName(String raw) {
         if (raw == null) return "";
         String s = raw.trim().toLowerCase();
         if (s.endsWith("ies") && s.length() > 4) {
-            return s.substring(0, s.length() - 3) + "y"; // berries -> berry
+            return s.substring(0, s.length() - 3) + "y";
         } else if (s.endsWith("oes") && s.length() > 4) {
-            return s.substring(0, s.length() - 2); // tomatoes -> tomato, potatoes -> potato
+            return s.substring(0, s.length() - 2);
         } else if (s.endsWith("es") && (s.endsWith("ches") || s.endsWith("shes") || s.endsWith("xes"))) {
             return s.substring(0, s.length() - 2);
         } else if (s.endsWith("s") && !s.endsWith("ss") && s.length() > 3) {
-            return s.substring(0, s.length() - 1); // eggs -> egg, onions -> onion
+            return s.substring(0, s.length() - 1);
         }
         return s;
     }
 
-    // Converts units to a base standard (g for weight, ml for volume, pcs for count)
     public static double toBaseQuantity(double qty, String unit) {
         if (unit == null) return qty;
         String u = unit.trim().toLowerCase();
@@ -43,7 +41,6 @@ public class MatchingUtils {
         return "pcs";
     }
 
-    // Returns how many ingredients are missing for a recipe (0 = strict match!)
     public static int countMissingIngredients(Recipe recipe, List<Ingredient> pantryList) {
         String raw = recipe.getIngredientsRaw();
         if (raw == null || raw.trim().isEmpty()) return 0;
@@ -66,7 +63,6 @@ public class MatchingUtils {
             for (Ingredient p : pantryList) {
                 if (normalizeName(p.getName()).equals(reqName)) {
                     String pCategory = getBaseUnitCategory(p.getUnit());
-                    // Allow match if same category or if either is generic pcs
                     if (pCategory.equals(reqCategory) || pCategory.equals("pcs") || reqCategory.equals("pcs")) {
                         totalAvailableBaseQty += toBaseQuantity(p.getQuantity(), p.getUnit());
                     }
@@ -80,7 +76,6 @@ public class MatchingUtils {
         return missing;
     }
 
-    // Formats "egg:2:pcs;milk:50:ml" into readable bullet points for UI
     public static String formatIngredientsForDisplay(String raw) {
         StringBuilder sb = new StringBuilder();
         String[] items = raw.split(";");
